@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+struct Node{
+    int data;
+    struct Node * next;
+}*first=NULL;
+//to create a Node
+void create(int A[],int n){
+    int i;
+    struct Node *t,*last;
+    first=(struct Node *)malloc(sizeof(struct Node));
+    first->data=A[0];
+    first->next=NULL;
+    last=first;
+    for(i=0;i<n;i++){
+        t=(struct Node *)malloc(sizeof(struct Node));
+    t->data=A[i];
+    t->next=NULL;
+    last->next=t;
+    last=t;
+    }
+}
+// Display
+void display(struct Node* p){
+while(p!=NULL){
+    printf("%d",p->data);
+    p=p->next;
+}
+}
+int main(){
+    int A[]={3,8,6,12,3};
+    create(A,5);
+    display(first);
+    return 0;
+}
