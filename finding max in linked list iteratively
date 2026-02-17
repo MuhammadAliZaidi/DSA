@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    struct Node* next;
+};
+struct Node* first=nullptr;
+void create(int A[],int n){
+    Node * t,*last;
+    first=new Node;
+    first->data=A[0];
+    first->next=nullptr;
+    last=first;
+    
+    for(int i=1;i<n;i++){
+        t=new Node;
+        t->data=A[i];
+        t->next=nullptr;
+        last->next=t;
+        last=t;
+        
+    }
+}
+void display(struct Node* p){
+    while(p!=nullptr){
+        cout<<p->data<<" ";
+        p=p->next;
+    }
+}
+int max(struct Node* p){
+    int m=-32768;
+    while(p){
+        if(p->data>m){
+            m=p->data;
+           
+        } p=p->next;
+    } return m;
+}
+
+int main() {
+    int A[] = {33, 28, 16,8,7,3,54,12,3,23};
+    create(A, 10);
+    display(first);
+    cout<<"\nThe maximum is "<<max(first)<<endl;
+    return 0;
+}
