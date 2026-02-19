@@ -1,0 +1,53 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+struct Node{
+    int data;
+    struct Node* next;
+};
+struct Node* first=nullptr;
+void create(int A[],int n){
+    Node * t,*last;
+    first=new Node;
+    first->data=A[0];
+    first->next=nullptr;
+    last=first;
+    
+    for(int i=1;i<n;i++){
+        t=new Node;
+        t->data=A[i];
+        t->next=nullptr;
+        last->next=t;
+        last=t;
+        
+    }
+}
+void display(struct Node* p){
+    while(p!=nullptr){
+        cout<<p->data<<" ";
+        p=p->next;
+    }
+}
+int Recursive_max(struct Node* p){
+    int x=0;
+    if(p==0){
+        return INT_MIN;
+    }
+    else {
+        x=Recursive_max(p->next);
+        if(x>p->data){
+            return x;
+        }
+        else 
+            return p->data;
+    }
+    
+}
+
+int main() {
+    int A[] = {33, 28, 16,8,7,3,54,12,3,23};
+    create(A, 10);
+    display(first);
+    cout<<"\nThe maximum is "<<Recursive_max(first)<<endl;
+    return 0;
+}
